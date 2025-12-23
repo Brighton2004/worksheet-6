@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 10
+
+class Stack {
+    string stack[MAX];
+    int top;
+
+public:
+    Stack() {
+        top = -1;
+    }
+
+    void push(string circuitID) {
+        if (top == MAX - 1) {
+            cout << "Stack Overflow! Cannot add more circuit boards.\n";
+            return;
+        }
+        stack[++top] = circuitID;
+        cout << circuitID << " pushed onto stack.\n";
+    }
+
+    void pop() {
+        if (top == -1) {
+            cout << "Stack Underflow! No circuit to remove.\n";
+            return;
+        }
+        cout << "Popped circuit: " << stack[top--] << endl;
+    }
+
+    void display() {
+        if (top == -1) {
+            cout << "Stack is empty.\n";
+            return;
+        }
+        cout << "Remaining Circuit Boards:\n";
+        for (int i = top; i >= 0; i--) {
+            cout << stack[i] << endl;
+        }
+    }
+};
+
+int main() {
+    Stack s;
+    s.push("CB101");
+    s.push("CB102");
+    s.push("CB103");
+
+    s.pop();
+    s.display();
+
+    return 0;
+}
