@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 5
+
+class Stack {
+    int pwm[MAX];
+    int top;
+
+public:
+    Stack() {
+        top = -1;
+    }
+
+    void push(int dutyCycle) {
+        if (top == MAX - 1) {
+            cout << "Overflow! PWM stack is full.\n";
+            return;
+        }
+        pwm[++top] = dutyCycle;
+        cout << "Stored PWM: " << dutyCycle << "%\n";
+    }
+
+    void pop() {
+        if (top == -1) {
+            cout << "Underflow! No PWM signals left.\n";
+            return;
+        }
+        cout << "Applying PWM: " << pwm[top--] << "%\n";
+    }
+};
+
+int main() {
+    Stack s;
+
+    s.push(20);
+    s.push(40);
+    s.push(60);
+    s.push(80);
+
+    cout << "\nReverse PWM Application:\n";
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop();   // Underflow example
+
+    return 0;
+}
